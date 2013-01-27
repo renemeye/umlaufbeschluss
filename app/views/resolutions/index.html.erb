@@ -1,0 +1,23 @@
+
+
+<h2>Aktuelle Umlaufbeschlüsse</h2>
+<table class="table table-hover">
+	<% @resolutions.each do |resolution| %>
+		<tr>
+			<td><%= link_to resolution.title, resolution%></td>
+			<td>
+				<div class="btn-group">
+				<%= link_to "Bearbeiten", edit_resolution_path(resolution), :class => "btn btn-small"%>
+				<button class="btn dropdown-toggle btn-small" data-toggle="dropdown"><span class="caret"></span></button>
+				<ul class="dropdown-menu btn-small">
+					<li><%= link_to "Anzeigen", resolution%></li>
+					<li><%= link_to "Bearbeiten", edit_resolution_path(resolution)%></li>
+					 <li class="divider"></li>
+					<li><%= link_to "Löschen", resolution, :confirm => "Bist du Sicher?", :method => :delete, :class => "btn btn-danger btn-mini" %></li>
+				</ul>
+			</td>
+		</tr>
+	<% end %>
+</table>
+
+<p><%= link_to "Add a New Resolution", new_resolution_path %></p>

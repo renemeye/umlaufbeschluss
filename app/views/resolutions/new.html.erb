@@ -1,0 +1,24 @@
+<h1>Add a new Resolution</h1>
+
+<%= form_for @resolution do |form| %>
+	<% if @resolution.errors.any? %>
+		<h2>Fehler</h2>
+		<ul><% @resolution.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+		<% end %></ul>
+	<% end %>
+	<p>
+	<%= form.label :title %><br />
+	<%= form.text_field :title %><br />
+	</p>
+
+	<p>
+	<%= form.label :resolution_text %><br />
+	<%= form.text_area :resolution_text %><br />
+	</p>
+	
+	<p>
+	<%= form.submit "Start the Resolution" %><br />
+	</p>
+
+<% end %>
