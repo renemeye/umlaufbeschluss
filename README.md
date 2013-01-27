@@ -8,6 +8,11 @@ Open Todos
 * Avoid dependencies
 	* http://blog.robertosoares.me/blog/2012/08/17/integrating-twitter-bootstrap-with-ruby-on-rails/ "Avoiding dependency" 
 
+Further Ideas
+-------------
+* Wiki Export
+  * Eport to other syntaxes like Mediawiki for easier documentation
+
 Used projects
 -------------
 * https://github.com/julescopeland/Rails-Bootstrap-Navbar
