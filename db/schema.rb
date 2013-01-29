@@ -11,7 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130127171215) do
+ActiveRecord::Schema.define(:version => 20130129173417) do
+
+  create_table "boards", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "memberships", :force => true do |t|
+    t.datetime "from"
+    t.datetime "to"
+    t.integer  "board_id"
+    t.integer  "person_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "memberships", ["board_id"], :name => "index_memberships_on_board_id"
+  add_index "memberships", ["person_id"], :name => "index_memberships_on_person_id"
+
+  create_table "people", :force => true do |t|
+    t.string   "email"
+    t.string   "name"
+    t.string   "password"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "resolutions", :force => true do |t|
     t.string   "title"
@@ -19,5 +45,15 @@ ActiveRecord::Schema.define(:version => 20130127171215) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
+
+  create_table "votes", :force => true do |t|
+    t.string   "voting"
+    t.string   "invite_code"
+    t.integer  "resolution_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "votes", ["resolution_id"], :name => "index_votes_on_resolution_id"
 
 end
