@@ -1,0 +1,47 @@
+<h2>Abstimmung zum Umlaufbeschluss</h2>
+<h3><%=@vote.resolution.title %></h3>
+
+<dl>
+	<dt>Antrag</dt>
+	<dd><%=@vote.resolution.resolution_text%></dd>
+	<dt>Deine Abstimmung</dt>
+	<dd>
+		<%# form_for @resolution do |form| %>
+		<table class="table">
+			<tr class="myVote"><td>
+				<div class="btn-group" id="myVoteGroup" data-toggle="buttons-radio">
+					<button type="button" value="yes" class="myVoteBtn btn btn-success">Dafür</button>
+					<button type="button" value="abstention" class="myVoteBtn btn ">Enthaltung</button>
+					<button type="button" value="no" class="myVoteBtn btn btn-danger">Dagegen</button>
+				</div>
+			</td></tr>
+		</table>
+		<%# end %>
+	</dd>
+	<dt>Begr&uuml;ndung</dt>
+	<dd><%=@vote.resolution.reasons%><dd>
+	<dt>Antragsteller</dt>
+	<dd><%=@vote.resolution.requestor%></dd>
+	<dt>Andere Abstimmungen</dt>
+	<dd>
+		<table class="table">
+			<thead>
+				<th>Person</th>
+				<th>Abstimmung</th>
+			</thead>
+			<tbody>
+				<% @vote.resolution.votes.each do |otherVote| %> 
+				 <%	if otherVote != @vote %>
+						<tr class="<%=bootstrap_tr_class_for_voting otherVote.voting %>">
+							<td><%=otherVote.person.name %></td>
+							<td><%=german_word_for_vote otherVote.voting %></td>
+						</tr>
+					<% end %>
+				<%	end %>
+			</tbody>
+		</table>
+	</dd>
+</dl>
+
+<p><%=@vote.invite_code %></p>
+

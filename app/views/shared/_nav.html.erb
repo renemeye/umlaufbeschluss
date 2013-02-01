@@ -1,18 +1,17 @@
 <% # source: http://blog.robertosoares.me/blog/2012/08/17/integrating-twitter-bootstrap-with-ruby-on-rails/ %>
 
-<%= nav_bar fixed: :top, brand: "Lentlist", responsive: true %>
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-      <%= link_to "Home", root_path, class: "brand" %>
-      <div class="nav-collapse">
-        <ul class="nav">
-        </ul>
-      </div>
-    </div>
-  </div>
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="container">
+			<a href="http://rene-meye.de:3000/" class="hidden-phone brand">Umlaufbeschluss</a> 
+			<ul class="nav">
+			<% unless current_user.nil? %>
+				<li><%= link_to "Neuer Umlaufbeschluss", new_resolution_path %></li>
+			<% end %>
+			</ul>
+			<%= render partial: 'sessions/new' %>
+			<div class="nav-collapse"></div>
+		</div>
+	</div>
+</div>
+

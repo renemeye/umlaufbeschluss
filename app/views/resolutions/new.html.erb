@@ -1,24 +1,46 @@
-<h1>Add a new Resolution</h1>
+<h1>Neuen Antrag stellen</h1>
 
-<%= form_for @resolution do |form| %>
+<%= form_for @resolution, :html => {:class => "form-horizontal"} do |form| %>
 	<% if @resolution.errors.any? %>
 		<h2>Fehler</h2>
 		<ul><% @resolution.errors.full_messages.each do |message| %>
 				<li><%= message %></li>
 		<% end %></ul>
 	<% end %>
-	<p>
-	<%= form.label :title %><br />
-	<%= form.text_field :title %><br />
-	</p>
-
-	<p>
-	<%= form.label :resolution_text %><br />
-	<%= form.text_area :resolution_text %><br />
-	</p>
-	
-	<p>
-	<%= form.submit "Start the Resolution" %><br />
-	</p>
+	<div class="control-group">
+		<%= form.label :title, "Betreff des Beschlusses", :class => "control-label" %>
+		<div class="controls">
+			<%= form.text_field :title, :class=>"fullSizeBox" %>
+		</div>
+	</div>
+	<div class="control-group">
+	<%= form.label :board, "Gremium", :class => "control-label" %>
+		<div class="controls">
+	<%= form.select :board_id, @boards.collect {|board| [ board.name, board.id ] }, :class=>"fullSizeBox" %><br />
+		</div>
+	</div>
+	<div class="control-group">
+	<%= form.label :resolution_text, "Formeller Antragstext", :class => "control-label" %>
+		<div class="controls">
+	<%= form.text_area :resolution_text, :class=>"fullSizeBox" %><br />
+		</div>
+	</div>
+	<div class="control-group">
+	<%= form.label :reasons, "Formlose Begründung", :class => "control-label" %>
+		<div class="controls">
+	<%= form.text_area :reasons, :class=>"fullSizeBox" %><br />
+		</div>
+	</div>
+	<div class="control-group">
+	<%= form.label :requestor, "Antragsteller", :class => "control-label" %>
+		<div class="controls">
+	<%= form.text_field :requestor, :class=>"fullSizeBox" %>
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="controls">	
+			<%= form.submit "Starte die Umfrage", :class => "btn" %><br />
+		</div>
+	</div>
 
 <% end %>

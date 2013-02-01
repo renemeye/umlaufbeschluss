@@ -1,23 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
   <title>Umlaufbeschluss</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag    "application" %>
+	<%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body class="container">
+<body>
 	<%= render partial: 'shared/nav' %>
 
-	<div class="row">
-		<div class="span2">
-			&nbsp;
-		</div>
-		<div class="span7">
+	<div class="row-fluid show-grid">
+		<div class="offset2 span8">
 			<%= render partial: "shared/flash_messages", flash: flash %>
 			<%= yield  %>
 		</div>
-		<div class="span3 offset2">
+		<div class="span1">
 				<%= render partial: 'shared/sidebar' %>
 		</div>
 	</div>

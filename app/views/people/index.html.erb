@@ -1,0 +1,16 @@
+
+<h2>Personenverwaltung</h2>
+<table class="table table-hover">
+	<% @people.each do |person| #sort_by(&:name). %>
+		<tr>
+			<td>
+				<%=link_to person.name, person %> (<%=person.email %>)
+				<ul>
+					<% person.boards.each do |board| %>
+						<li><%=board.name %></li>
+					<% end %>
+				</ul>
+			</td>
+		</tr>
+	<% end %>
+</table>

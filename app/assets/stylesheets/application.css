@@ -8,6 +8,29 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require bootstrap/bootstrap.css
+ *= require bootstrap/bootstrap-responsive.css
  *= require_self
  *= require_tree .
  */
+
+body {
+	padding: 0px;
+}
+
+.fullSizeBox {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+	width:	100%;
+}
+
+input[type="text"].fullSizeBox  {
+	height: 30px;
+}
+
+textarea.fullSizeBox  {
+	height: 15em;
+}
+
+

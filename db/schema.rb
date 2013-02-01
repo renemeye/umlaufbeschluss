@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130129173417) do
+ActiveRecord::Schema.define(:version => 20130131200701) do
 
   create_table "boards", :force => true do |t|
     t.string   "name"
@@ -34,9 +34,9 @@ ActiveRecord::Schema.define(:version => 20130129173417) do
   create_table "people", :force => true do |t|
     t.string   "email"
     t.string   "name"
-    t.string   "password"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "password_digest"
   end
 
   create_table "resolutions", :force => true do |t|
@@ -44,6 +44,9 @@ ActiveRecord::Schema.define(:version => 20130129173417) do
     t.text     "resolution_text"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.integer  "board_id"
+    t.string   "reasons"
+    t.string   "requestor"
   end
 
   create_table "votes", :force => true do |t|
@@ -52,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20130129173417) do
     t.integer  "resolution_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "membership_id"
   end
 
   add_index "votes", ["resolution_id"], :name => "index_votes_on_resolution_id"

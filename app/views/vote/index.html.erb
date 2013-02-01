@@ -1,0 +1,23 @@
+<h2>Abstimmungen (Debug)</h2>
+<table class="table table-hover">
+	<thead>
+		<th>Gremium</th>
+		<th>Beschluss</th>
+		<th>Person</th>
+		<th>Abstimmung</th>
+		<th>Invite</th>
+	</thead>
+	<tbody>
+		<% @votes.each do |vote| %>
+			<tr class="<%=bootstrap_tr_class_for_voting vote.voting %>">
+				<td><%=vote.board.name %></td>
+				<td><%=vote.resolution.title %></td>
+				<td><%=vote.person.name %></td>
+				<td><%=vote.voting %></td>
+				<td><%=vote.invite_code %></td>
+			</tr>
+		<% end %>
+	</tbody>
+
+
+</table>

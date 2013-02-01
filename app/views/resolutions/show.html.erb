@@ -1,3 +1,19 @@
-<h1><%=@resolution.title%></h1>
+<h2><%=@resolution.title%></h2>
 <p><%=@resolution.resolution_text%></p>
 <small><%=@resolution.created_at%></small>
+
+<h3>Abstimmungen</h3>
+<table class="table table-hover">
+	<thead>
+		<th>Person</th>
+		<th>Abstimmung</th>
+	</thead>
+	<tbody>
+		<% @resolution.votes.each do |otherVote| %>
+			<tr class="<%=bootstrap_tr_class_for_voting otherVote.voting %>">
+				<td><%=otherVote.person.name %></td>
+				<td><%=german_word_for_vote otherVote.voting %></td>
+			</tr>
+		<%  end %>
+	</tbody>
+</table>

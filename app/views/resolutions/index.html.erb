@@ -2,22 +2,42 @@
 
 <h2>Aktuelle Umlaufbeschlüsse</h2>
 <table class="table table-hover">
-	<% @resolutions.each do |resolution| %>
-		<tr>
-			<td><%= link_to resolution.title, resolution%></td>
-			<td>
-				<div class="btn-group">
-				<%= link_to "Bearbeiten", edit_resolution_path(resolution), :class => "btn btn-small"%>
-				<button class="btn dropdown-toggle btn-small" data-toggle="dropdown"><span class="caret"></span></button>
-				<ul class="dropdown-menu btn-small">
-					<li><%= link_to "Anzeigen", resolution%></li>
-					<li><%= link_to "Bearbeiten", edit_resolution_path(resolution)%></li>
-					 <li class="divider"></li>
-					<li><%= link_to "Löschen", resolution, :confirm => "Bist du Sicher?", :method => :delete, :class => "btn btn-danger btn-mini" %></li>
-				</ul>
-			</td>
-		</tr>
-	<% end %>
-</table>
+	<thead>
+		<th>Umfrage</th>
+		<th class="hidden-phone">Gremium</th>
+		<th class="hidden-phone">Ergebnis</th>
+		<th>Verhältnisse</th>
+		<% if logged_in? %><th></th><% end %>
+	</thead>
+	<tbody>
+		<% @resolutions.each do |resolution| %>
+			<tr class="<%=bootstrap_tr_class_for_voting resolution.result%>">
+				<td><%=link_to resolution.title, resolution%></td>
+				<td class="hidden-phone"><%=resolution.board.name%></td>
+				<td class="hidden-phone"><%=german_word_for_voting_result resolution.result%></td>
+				<td>
+					<%results = resolution.result_numbers%>
+					<div class="progress">
+						<div class="bar bar-success" style="width: <%=results[:yesQuorum]*100%>%;"></div>
+						<div class="bar bar-info" style="width: <%=results[:abstentionQuorum]*100%>%;"></div>
+						<div class="bar bar-danger" style="width: <%=results[:noQuorum]*100%>%;"></div>
+					</div>
+				</td>
 
-<p><%= link_to "Add a New Resolution", new_resolution_path %></p>
+				<% if logged_in? %>
+					<td>
+						<div class="btn-group">
+						<%= link_to "Bearbeiten", edit_resolution_path(resolution), :class => "btn btn-small"%>
+						<button class="btn dropdown-toggle btn-small" data-toggle="dropdown"><span class="caret"></span></button>
+						<ul class="dropdown-menu btn-small">
+							<li><%= link_to "Anzeigen", resolution%></li>
+							<li><%= link_to "Bearbeiten", edit_resolution_path(resolution)%></li>
+							<li class="divider"></li>
+							<li><%= link_to "Löschen", resolution, :confirm => "Bist du Sicher?", :method => :delete, :class => "btn btn-danger btn-mini" %></li>
+						</ul>
+					</td>
+				<% end %>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

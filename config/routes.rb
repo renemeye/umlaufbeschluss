@@ -3,6 +3,11 @@ Umlaufbeschluss::Application.routes.draw do
   # first created -> highest priority.
 
 	resources :resolutions
+	resources :people
+	resources :sessions
+#	resources :vote
+	match 'vote/:id(/:invite_code)' => 'vote#edit'
+
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
@@ -12,6 +17,7 @@ Umlaufbeschluss::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
+  # match ':controller(/:action(/:id))(.:format)'
   #   resources :products
 
   # Sample resource route with options:
