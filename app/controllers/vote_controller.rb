@@ -6,7 +6,8 @@ class VoteController < ApplicationController
 
 	def edit
 		@vote = Vote.find(params[:id])
-		unless params[:invite_code] == @vote.invite_code || current_user == @vote.person
+
+		unless params[:invite_code] == @vote.invite_code || current_user == @vote.person 
 			redirect_to resolution_path(@vote.resolution.id), :notice => "Du musst eingeloggt sein"
 			return 
 		end

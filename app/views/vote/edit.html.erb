@@ -13,7 +13,7 @@
 			<tr class="myVote">
 				<td style="border-top:none">
 						<div class="span2">
-							<%=@vote.person.name %>
+							<%=@vote.person.name unless @vote.person.nil? %>
 						</div>
 						<div class="span6">
 							<div class="btn-group" id="myVoteGroup" data-toggle="buttons-radio">
@@ -46,7 +46,7 @@
 				<% @vote.resolution.votes.each do |otherVote| %> 
 				 <%	if otherVote != @vote %>
 						<tr class="<%=bootstrap_tr_class_for_voting otherVote.voting %>">
-							<td><%=otherVote.person.name %></td>
+							<td><%=otherVote.person.name unless otherVote.person.nil? %></td>
 							<td><%=german_word_for_vote otherVote.voting %></td>
 						</tr>
 					<% end %>
@@ -56,5 +56,4 @@
 	</dd>
 </dl>
 
-<p><%=@vote.invite_code %></p>
 

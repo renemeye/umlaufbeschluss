@@ -22,9 +22,9 @@
 						<tr class="<%=bootstrap_tr_class_for_voting otherVote.voting %>">
 							<td>
 				 				<%	if otherVote.person == current_user %>
-									<%=link_to otherVote.person.name, vote_path(otherVote.id) %>
+									<%=link_to otherVote.person.name, vote_path(otherVote.id) unless otherVote.person.nil? %>
 								<% else %>
-									<%=otherVote.person.name %>
+									<%=otherVote.person.name unless otherVote.person.nil? %>
 								<% end %>
 							</td>
 							<td>
