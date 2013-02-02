@@ -3,25 +3,38 @@
 
 <dl>
 	<dt>Antrag</dt>
-	<dd><%=@vote.resolution.resolution_text%></dd>
+	<dd><%=@vote.resolution.resolution_text%>
+	<br /><br />
+	</dd>
 	<dt>Deine Abstimmung</dt>
 	<dd>
-		<%# form_for @resolution do |form| %>
+	<%=form_for @vote, :html=>{:class=>"navbar-form"} do |form| %>
 		<table class="table">
-			<tr class="myVote"><td>
-				<div class="btn-group" id="myVoteGroup" data-toggle="buttons-radio">
-					<button type="button" value="yes" class="myVoteBtn btn btn-success">Dafür</button>
-					<button type="button" value="abstention" class="myVoteBtn btn ">Enthaltung</button>
-					<button type="button" value="no" class="myVoteBtn btn btn-danger">Dagegen</button>
-				</div>
-			</td></tr>
+			<tr class="myVote">
+				<td style="border-top:none">
+						<div class="span2">
+							<%=@vote.person.name %>
+						</div>
+						<div class="span6">
+							<div class="btn-group" id="myVoteGroup" data-toggle="buttons-radio">
+								<button type="button" value="yes" class="myVoteBtn btn btn-success">Dafür</button>
+								<button type="button" value="abstention" class="myVoteBtn btn ">Enthaltung</button>
+								<button type="button" value="no" class="myVoteBtn btn btn-danger">Dagegen</button>
+							</div>
+						</div>
+						<div class="span4">
+							<%= form.hidden_field :voting  %>
+							<%= form.submit "Abstimmen", :class=>"btn pull-right", :id=>"submitMyVote", :disabled=>"disabled" %>
+						</div>
+					</div>
+			</td></tr> 
 		</table>
-		<%# end %>
+		<% end %>
 	</dd>
 	<dt>Begr&uuml;ndung</dt>
-	<dd><%=@vote.resolution.reasons%><dd>
+	<dd><%=@vote.resolution.reasons%><br/><br/><dd>
 	<dt>Antragsteller</dt>
-	<dd><%=@vote.resolution.requestor%></dd>
+	<dd><%=@vote.resolution.requestor%><br/><br/></dd>
 	<dt>Andere Abstimmungen</dt>
 	<dd>
 		<table class="table">

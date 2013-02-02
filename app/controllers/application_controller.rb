@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   #use in Code: return if you_shall_not_pass
   def you_shall_not_pass
     redirect_to root_path, :notice => "Du bist nicht angemeldet" if current_user.nil?
-    logger.debug "You here the sound of an old man shouting and a stone bridge bursting." if current_user.nil?
+    logger.debug "You hear the sound of an old man shouting and a stone bridge bursting." if current_user.nil?
     return current_user.nil?
   end
 

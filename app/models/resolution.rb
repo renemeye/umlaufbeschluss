@@ -47,7 +47,7 @@ class Resolution < ActiveRecord::Base
 
 		return {
 				:yes => yesCount/(voteCount-abstentionCount), 
-				:no => yesCount/(voteCount-abstentionCount), 
+				:no => noCount/(voteCount-abstentionCount), 
 				:yesQuorum => yesCount/voteCount,
 				:noQuorum => noCount/voteCount,
 				:abstentionQuorum => abstentionCount/voteCount,

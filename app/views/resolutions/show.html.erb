@@ -1,19 +1,43 @@
-<h2><%=@resolution.title%></h2>
-<p><%=@resolution.resolution_text%></p>
+<h3><%=@resolution.title%></h3>
 <small><%=@resolution.created_at%></small>
 
-<h3>Abstimmungen</h3>
-<table class="table table-hover">
-	<thead>
-		<th>Person</th>
-		<th>Abstimmung</th>
-	</thead>
-	<tbody>
-		<% @resolution.votes.each do |otherVote| %>
-			<tr class="<%=bootstrap_tr_class_for_voting otherVote.voting %>">
-				<td><%=otherVote.person.name %></td>
-				<td><%=german_word_for_vote otherVote.voting %></td>
-			</tr>
-		<%  end %>
-	</tbody>
-</table>
+<dl>
+	<dt>Antrag</dt>
+	<dd><%=@resolution.resolution_text%>
+	<br /><br />
+	</dd>
+	<dt>Begr&uuml;ndung</dt>
+	<dd><%=@resolution.reasons%><br/><br/><dd>
+	<dt>Antragsteller</dt>
+	<dd><%=@resolution.requestor%><br/><br/></dd>
+	<dt>Abstimmungen</dt>
+	<dd>
+		<table class="table">
+			<thead>
+				<th>Person</th>
+				<th>Abstimmung</th>
+			</thead>
+			<tbody>
+				<% @resolution.votes.each do |otherVote| %> 
+						<tr class="<%=bootstrap_tr_class_for_voting otherVote.voting %>">
+							<td>
+				 				<%	if otherVote.person == current_user %>
+									<%=link_to otherVote.person.name, vote_path(otherVote.id) %>
+								<% else %>
+									<%=otherVote.person.name %>
+								<% end %>
+							</td>
+							<td>
+				 				<%	if otherVote.person == current_user %>
+									<%=link_to german_word_for_vote(otherVote.voting), vote_path(otherVote.id) %>
+								<% else %>
+									<%=german_word_for_vote otherVote.voting %>
+								<% end %>
+								</td>
+						</tr>
+				<%	end %>
+			</tbody>
+		</table>
+	</dd>
+</dl>
+

@@ -6,7 +6,8 @@ Umlaufbeschluss::Application.routes.draw do
 	resources :people
 	resources :sessions
 #	resources :vote
-	match 'vote/:id(/:invite_code)' => 'vote#edit'
+	match 'vote/:id(/:invite_code)' => 'vote#edit', :as => :vote, :via => [:get]
+	match 'vote/:id(/:invite_code)' => 'vote#update', :via => [:put]
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

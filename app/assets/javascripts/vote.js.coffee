@@ -4,7 +4,15 @@
 #
 $ -> $(".myVoteBtn").click (event) -> 
 	button = $(event.currentTarget)
-	$("tr.myVote").removeClass("info error success").addClass votingToBootstrapClass button.attr("value")
+	thisValue = button.attr("value")
+	$("tr.myVote")
+		.removeClass("info error success")
+		.addClass votingToBootstrapClass thisValue
+	$("#vote_voting").val thisValue
+	$("#submitMyVote")
+		.removeAttr("disabled")
+		.val(button.text()+" Abstimmen")
+	
 
 votingToBootstrapClass = (voting) -> 
 	switch voting
@@ -16,5 +24,4 @@ votingToBootstrapClass = (voting) ->
 			"info"
 		else
 			voting
-
 

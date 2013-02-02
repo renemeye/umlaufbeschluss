@@ -1,6 +1,6 @@
 class ResolutionsController < ApplicationController
 	def index
-		@resolutions = Resolution.all
+		@resolutions = Resolution.all(:order=>"created_at DESC")
 	end
 
 	def show
@@ -15,6 +15,7 @@ class ResolutionsController < ApplicationController
 
 	def create
 		return if you_shall_not_pass
+
 		@resolution = Resolution.new(params[:resolution])
 		@boards = Board.all
 
@@ -35,6 +36,7 @@ class ResolutionsController < ApplicationController
 
 	def update
 		return if you_shall_not_pass
+
   	@resolution = Resolution.find(params[:id])
 
 		if @resolution.update_attributes(params[:resolution])
@@ -69,6 +71,8 @@ private
 				until vote.save do
 					vote.invite_code = get_random_invite_code
 				end
+
+				ResolutionMailer.new_vote(vote).deliver
 
 			end
 

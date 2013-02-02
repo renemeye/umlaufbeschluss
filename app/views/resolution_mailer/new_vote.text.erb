@@ -1,0 +1,24 @@
+Hallo <%=@person.name%>,
+<%=@current_user.name%> hat gerade einen neuen Antrag als Umlaufbeschluss für den "<%=@resolution.board.name%>" gestellt.
+
+Direkt zur Abstimmung:
+http://rene-meye.de:3000/vote/<%=@vote.id%>/<%=@vote.invite_code%>
+(Achtung, dieser Link ist nur für dich bestimmt. Damit kannst du einmalig abstimmen.)
+
+Der öffentliche Link:
+http://rene-meye.de:3000<%=resolution_path @resolution.id%>
+
+"<%=@resolution.title%>" - <%=@resolution.requestor%>
+
+Antragstext
+===========
+<%=@resolution.resolution_text%>
+
+Begründung
+==========
+<%=@resolution.reasons%>
+
+lieber Gruß
+
+
+<%=@current_user.name%>
