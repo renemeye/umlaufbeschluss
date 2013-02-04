@@ -7,6 +7,19 @@ class ResolutionMailer < ActionMailer::Base
 		@person = vote.person
 		@current_user = Person.first #current_user
 		@resolution = vote.resolution
-		mail(:to => @person.email, :subject => "[Umlaufbeschluss] "+@resolution.title)
+		mail(
+			:to => @person.email, 
+			:subject => "[Umlaufbeschluss] "+@resolution.title,
+			"Message-ID" => @resolution.message_id
+		)
+	end
+
+	def resolution_has_passed
+		@resolution = vote.resolution
+		mail(
+			:to => @person.email, 
+			:subject => "Re:[Umlaufbeschluss] "+@resolution.title,
+			"Message-ID" => @resolution.message_id
+		)
 	end
 end

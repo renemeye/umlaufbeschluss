@@ -11,12 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130131200701) do
+ActiveRecord::Schema.define(:version => 20130203172007) do
 
   create_table "boards", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.string   "additional_email_receiver"
   end
 
   create_table "memberships", :force => true do |t|
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20130131200701) do
     t.integer  "board_id"
     t.string   "reasons"
     t.string   "requestor"
+    t.string   "message_id"
   end
 
   create_table "votes", :force => true do |t|

@@ -17,6 +17,7 @@ class ResolutionsController < ApplicationController
 		return if you_shall_not_pass
 
 		@resolution = Resolution.new(params[:resolution])
+		@resolution.message_id = "#{Digest::SHA2.hexdigest(Time.now.to_i.to_s)}@rene-meye.de"
 		@boards = Board.all
 
 		if @resolution.save
@@ -67,10 +68,8 @@ private
 				vote.resolution = resolution
 				vote.membership = membership
 				vote.voting = "notVoted"
-
-				until vote.save do
-					vote.invite_code = get_random_invite_code
-				end
+				vote.invite_code = get_random_invite_code
+				vote.save
 
 				ResolutionMailer.new_vote(vote).deliver
 

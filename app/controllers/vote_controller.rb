@@ -16,7 +16,8 @@ class VoteController < ApplicationController
 	def update
   	@vote = Vote.find(params[:id])
 
-		if @vote.update_attributes(params[:vote]) && @vote.update_attribute(:invite_code,"")
+		if @vote.update_attributes(params[:vote])
+			@vote.update_attribute(:invite_code,"")
 			redirect_to resolution_path(@vote.resolution.id)
 		else
 			render 'edit'
