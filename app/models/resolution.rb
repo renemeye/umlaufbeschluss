@@ -1,5 +1,6 @@
 class Resolution < ActiveRecord::Base
-  attr_accessible :resolution_text, :title, :board_id, :reasons, :requestor
+  attr_accessible :title, :reasons, :requestor, :resolution_text, :board_id 
+	attr_readonly :resolution_text, :board_id 
 
 	validates :title, :resolution_text, :presence => true
 	validates :title, :length => {:minimum => 5, :maximum => 140}
