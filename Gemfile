@@ -44,3 +44,6 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 #
 # Bootstrap layout
 #gem 'bootswatch-rails'
+#
+#Gravatar
+ gem 'gravatar-ultimate'
