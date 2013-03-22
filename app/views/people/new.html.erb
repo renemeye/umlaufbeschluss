@@ -1,9 +1,9 @@
-<h1>Sign Up</h1>
+<h1>Person hinzufügen</h1>
 
-<%= form_for @person do |f| %>
+<%= form_for @person, :html => {:class => "form-horizontal"} do |f| %>
   <% if @person.errors.any? %>
     <div class="error_messages">
-      <h2>Noch nicht vollstaendig ausgefuellt</h2>
+      <h2>Nicht vollständig ausgefüllt</h2>
       <ul>
         <% for message in @person.errors.full_messages %>
           <li><%= message %></li>
@@ -11,21 +11,33 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <div class="control-group">
+		<%= f.label :name, "Name der Person", :class=>"control-label" %>
+		<div class="controls">
+			<%= f.text_field :name, :class=> "fullSizeBox"  %>
+		</div>
   </div>
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+  <div class="control-group">
+		<%= f.label :email, "E-Mail Adresse", :class => "control-label" %>
+		<div class="controls">
+			<%= f.text_field :email, :class=> "fullSizeBox"  %>
+		</div>
   </div>
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+  <div class="control-group">
+		<%= f.label :password, "Passwort", :class => "control-label" %>
+		<div class="controls">
+			<%= f.password_field :password, :class=> "fullSizeBox"  %>
+		</div>
+	</div>
+  <div class="control-group">
+		<%= f.label :password_confirmation, "Passwort wiederholen", :class => "control-label" %>
+		<div class="controls">
+			<%= f.password_field :password_confirmation, :class=> "fullSizeBox"  %>
+		</div>
   </div>
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="actions"><%= f.submit %></div>
+  <div class="control-group">
+		<div class="controls">
+			<%= f.submit "Person hinzufügen", :class=>"btn btn-info" %>
+		</div>
+	</div>
 <% end %>
