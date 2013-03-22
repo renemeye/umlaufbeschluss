@@ -1,5 +1,6 @@
 <h3><%=@resolution.title%></h3>
-<small><%=@resolution.created_at%></small>
+<small>Erstellt am: <%=@resolution.created_at.strftime("%A %d.%m.%Y")%></small>
+<small>um: <%=@resolution.created_at.strftime("%H:%M Uhr")%></small>
 
 <dl>
 	<dt>Antrag</dt>
