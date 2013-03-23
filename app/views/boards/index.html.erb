@@ -1,0 +1,21 @@
+<h2>Gremienverwatung</h2>
+<p>
+<%=link_to "Gremium hinzufügen", new_board_path, :class=>"btn"  %>
+</p>
+<table class="table table-hover">
+	<% @Boards.sort_by{:name}.each do |board| %>
+		<tr>
+			<td>
+				<%=link_to board.name, board %>
+				<ul>
+					<% board.persons.each do |person| %>
+						<li><%=image_tag Gravatar.new(person.email).image_url, :size=>"18x18"%> <%=person.name%> (<%=person.email%>)</li>
+					<% end %>
+				</ul>
+			</td>
+			<td>
+				<%= link_to "Bearbeiten", edit_board_path(board), :class=>"btn" %>
+			</td>
+		</tr>
+	<% end %>
+</table>

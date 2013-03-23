@@ -5,6 +5,7 @@ Umlaufbeschluss::Application.routes.draw do
 	resources :resolutions
 	resources :people
 	resources :sessions
+	resources :boards
 #	resources :vote
 	match 'vote/:id(/:invite_code)' => 'vote#edit', :as => :vote, :via => [:get]
 	match 'vote/:id(/:invite_code)' => 'vote#update', :via => [:put]
